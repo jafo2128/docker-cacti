@@ -14,8 +14,12 @@ log() {
 move_cacti() {
     if [ -e "/cacti" ]; then
         log "Moving Cacti into Web Directory"
-        rm -rf /data/www/cacti
-        mv -f /cacti /data/www/cacti
+	if [ ! -e /data/www/cacti/rra ] ; then
+          rm -rf /data/www/cacti
+          mv -f /cacti /data/www/cacti
+        else
+          rsync -a /cacti/ /data/www/cacti/
+        fi
         chown -R www:www /data/www
         log "Cacti moved"
     fi
