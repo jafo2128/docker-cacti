@@ -70,7 +70,7 @@ update_spine_config() {
 update_cron() {
     log "Updating Cron jobs"
     # Add Cron jobs
-    crontab /etc/import-cron.conf
+    cp /etc/import-cron.conf /etc/cron.d/cacti
     log "Crontab updated."
 }
 set_timezone() {
